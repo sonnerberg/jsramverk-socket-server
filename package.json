@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "rsync -av --progress --exclude node_modules . digitalocean:/home/deploy/git/socket-server && ssh digitalocean sudo systemctl restart socket-server.service"
+    "deploy": "rsync -av --progress --exclude node_modules . digitalocean:/home/deploy/git/socket-server && ssh digitalocean sudo systemctl restart socket-server.service",
+    "start": "nodemon app"
   },
   "keywords": [],
   "author": "",
