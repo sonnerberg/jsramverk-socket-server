@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const moment = require('moment')
+moment.locale('sv')
 
 app.use(cors())
 
@@ -13,9 +15,10 @@ if (process.env.NODE_ENV === 'production') {
 
 io.on('connection', (socket) => {
   console.log('User connected')
+  io.emit('chat message', `${moment().format('LTS')}: User connected`)
 
   socket.on('chat message', (message) => {
-    io.emit('chat message', message)
+    io.emit('chat message', `${moment().format('LTS')}: ${message}`)
   })
 })
 
