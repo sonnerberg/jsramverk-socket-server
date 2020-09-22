@@ -1,8 +1,15 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
+
+app.use(cors())
 
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+
+if (process.env.NODE_ENV === 'production') {
+  io.origins(['https://socket-client.sonnerberg.me:443'])
+}
 
 io.on('connection', (socket) => {
   console.log('User connected')
@@ -12,4 +19,4 @@ io.on('connection', (socket) => {
   })
 })
 
-server.listen(3000)
+server.listen(8300)
