@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "rsync -av --progress --exclude node_modules . digitalocean:/home/deploy/git/socket-server && ssh digitalocean npm install --prefix /home/deploy/git/socket-server && ssh digitalocean sudo systemctl restart socket-server.service",
     "start": "nodemon app",
-    "deploy:all": "npm run deploy && npm run deploy --prefix ../socket-client"
+    "deploy:all": "npm run deploy && npm run deploy --prefix ../socket-client",
+    "push:all": "git push && git -C ../socket-client push"
   },
   "keywords": [],
   "author": "",
