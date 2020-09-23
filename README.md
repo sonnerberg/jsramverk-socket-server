@@ -6,4 +6,7 @@ but to use it you have to go to
 
 ## Timezone
 
-To use Swedish timezone I had to run `sudo timedatectl set-timezone Europe/Stockholm` on the server.
+To use Swedish timezone first ran
+`sudo timedatectl set-timezone Europe/Stockholm` on the server.
+
+But it's probably better to speficy `timeZone` in `node`.

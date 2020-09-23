@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const timeFormat = new Intl.DateTimeFormat('sv', {
   timeStyle: 'medium',
+  timeZone: 'Europe/Stockholm',
 })
 
 app.use(cors())
