@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const moment = require('moment')
-moment.locale('sv')
+
+const timeFormat = new Intl.DateTimeFormat('sv', {
+  timeStyle: 'medium',
+})
 
 app.use(cors())
 
@@ -15,10 +17,13 @@ if (process.env.NODE_ENV === 'production') {
 
 io.on('connection', (socket) => {
   console.log('User connected')
-  io.emit('chat message', `${moment().format('LTS')}: User connected`)
+  io.emit('chat message', `${timeFormat.format(Date.now())}: User connected`)
 
-  socket.on('chat message', (message) => {
-    io.emit('chat message', `${moment().format('LTS')}: ${message}`)
+  socket.on('chat message', (nickname, message) => {
+    io.emit(
+      'chat message',
+      `${timeFormat.format(Date.now())} ${nickname}: ${message}`,
+    )
   })
 })
 
