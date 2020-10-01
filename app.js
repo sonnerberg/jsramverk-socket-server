@@ -14,7 +14,10 @@ const io = require('socket.io')(server)
 let connectedUsers = []
 
 if (process.env.NODE_ENV === 'production') {
-  io.origins(['https://socket-client.sonnerberg.me:443'])
+  io.origins([
+    'https://socket-client.sonnerberg.me:443',
+    'https://sonnerberg.me:443',
+  ])
 }
 
 io.on('connection', (socket) => {
