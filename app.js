@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
     const time = `${timeFormat.format(Date.now())}`
     const message = 'joined the chat.'
     connectedUsers = [...connectedUsers, { name, id: socket.id }]
-    socket.broadcast.emit('join room', {
+    io.emit('join room', {
       time,
       name,
       message,
