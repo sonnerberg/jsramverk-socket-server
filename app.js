@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
 
   socket.on('chat message', ({ name, message }) => {
     const time = `${timeFormat.format(Date.now())}`
-    io.emit('chat message', {
+    socket.broadcast.emit('chat message', {
       time,
       name,
       message,
@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
     const time = `${timeFormat.format(Date.now())}`
     const message = 'joined the chat.'
     connectedUsers = [...connectedUsers, { name, id: socket.id }]
-    io.emit('join room', {
+    socket.broadcast.emit('join room', {
       time,
       name,
       message,
