@@ -115,8 +115,8 @@ async function findInCollection(dsn, colName, criteria, projection, limit) {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  const db = await client.db()
-  const col = await db.collection(colName)
+  const db = client.db()
+  const col = db.collection(colName)
   const res = await col.find(criteria, projection).limit(limit).toArray()
 
   await client.close()
@@ -143,8 +143,8 @@ async function insertInCollection(dsn, colName, message) {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  const db = await client.db()
-  const col = await db.collection(colName)
+  const db = client.db()
+  const col = db.collection(colName)
 
   await col.insertOne(message)
 
